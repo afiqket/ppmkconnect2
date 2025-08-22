@@ -1,39 +1,35 @@
 import React from 'react';
 import { NavigationTab } from '../../contexts/NavigationContext';
-import OverviewTab from '../Tabs/OverviewTab';
-import NotificationsTab from './Tabs/NotificationsTab';
+import OverviewTab from './Tabs/OverviewTab';
 import AnnouncementsTab from './Tabs/AnnouncementsTab';
 import ClubsTab from './Tabs/ClubsTab';
 import EventsTab from './Tabs/EventsTab';
-import ApplicationsTab from './Tabs/ApplicationsTab';
 
 interface PPMKMemberDashboardProps {
   activeTab: NavigationTab;
 }
 
 const PPMKMemberDashboard: React.FC<PPMKMemberDashboardProps> = ({ activeTab }) => {
-  const renderContent = () => {
+  const renderActiveTab = () => {
     switch (activeTab) {
       case 'overview':
-        return <OverviewTab userRole="ppmk_member" />;
-      case 'notifications':
-        return <NotificationsTab />;
+        return <OverviewTab />;
       case 'announcements':
         return <AnnouncementsTab />;
       case 'clubs':
-        return <ClubsTab userRole="ppmk_member" />;
+        return <ClubsTab />;
       case 'events':
-        return <EventsTab userRole="ppmk_member" />;
-      case 'applications':
-        return <ApplicationsTab userRole="ppmk_member" />;
+        return <EventsTab />;
       default:
-        return <OverviewTab userRole="ppmk_member" />;
+        return <OverviewTab />;
     }
   };
 
   return (
-    <div className="space-y-6">
-      {renderContent()}
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {renderActiveTab()}
+      </div>
     </div>
   );
 };

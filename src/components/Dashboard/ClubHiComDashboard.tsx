@@ -1,10 +1,8 @@
 import React from 'react';
 import { NavigationTab } from '../../contexts/NavigationContext';
-import OverviewTab from '../Tabs/OverviewTab';
-import NotificationsTab from './Tabs/NotificationsTab';
+import OverviewTab from './Tabs/OverviewTab';
 import AnnouncementsTab from './Tabs/AnnouncementsTab';
-import ApplicationsTab from './Tabs/ApplicationsTab';
-import ProposalsTab from './Tabs/ProposalsTab';
+import ClubsTab from './Tabs/ClubsTab';
 import EventsTab from './Tabs/EventsTab';
 
 interface ClubHiComDashboardProps {
@@ -12,28 +10,26 @@ interface ClubHiComDashboardProps {
 }
 
 const ClubHiComDashboard: React.FC<ClubHiComDashboardProps> = ({ activeTab }) => {
-  const renderContent = () => {
+  const renderActiveTab = () => {
     switch (activeTab) {
       case 'overview':
-        return <OverviewTab userRole="club_hicom" />;
-      case 'notifications':
-        return <NotificationsTab />;
+        return <OverviewTab />;
       case 'announcements':
         return <AnnouncementsTab />;
-      case 'applications':
-        return <ApplicationsTab userRole="club_hicom" />;
-      case 'proposals':
-        return <ProposalsTab userRole="club_hicom" />;
+      case 'clubs':
+        return <ClubsTab />;
       case 'events':
-        return <EventsTab userRole="club_hicom" />;
+        return <EventsTab />;
       default:
-        return <OverviewTab userRole="club_hicom" />;
+        return <OverviewTab />;
     }
   };
 
   return (
-    <div className="space-y-6">
-      {renderContent()}
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {renderActiveTab()}
+      </div>
     </div>
   );
 };

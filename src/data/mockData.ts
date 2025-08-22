@@ -1,221 +1,242 @@
-import { Announcement, Proposal, Event, Club } from '../types';
-
-export const mockAnnouncements: Announcement[] = [
+export const mockUsers = [
   {
-    id: 'ann_1',
-    title: 'Welcome to New Academic Year 2024/2025',
-    content: 'We are excited to welcome all students to the new academic year. Please check your schedules and prepare for an amazing year ahead!',
-    authorId: 'user_5',
-    authorName: 'Ibrahim Ismail',
-    authorRole: 'ppmk_hicom',
-    targetRoles: ['all'],
-    createdAt: '2024-01-15T10:00:00Z',
-    isImportant: true,
-    readBy: []
+    id: '1',
+    email: 'admin@ppmk.edu.my',
+    name: 'Ahmad Rahman',
+    role: 'ppmk_hicom' as const,
+    clubId: null,
+    clubName: null
   },
   {
-    id: 'ann_2',
-    title: 'Robotics Club Meeting This Friday',
-    content: 'All robotics club members are invited to attend our weekly meeting this Friday at 2 PM in Lab 3. We will discuss upcoming competitions.',
-    authorId: 'user_3',
-    authorName: 'Farid Hassan',
-    authorRole: 'club_hicom',
-    targetRoles: ['club_member'],
+    id: '2',
+    email: 'member@ppmk.edu.my',
+    name: 'Siti Nurhaliza',
+    role: 'ppmk_member' as const,
+    clubId: null,
+    clubName: null
+  },
+  {
+    id: '3',
+    email: 'club@ppmk.edu.my',
+    name: 'Muhammad Ali',
+    role: 'club_member' as const,
     clubId: 'club_1',
-    clubName: 'Robotics Club',
-    createdAt: '2024-01-14T14:30:00Z',
-    isImportant: false,
-    readBy: []
+    clubName: 'Photography Club'
   },
   {
-    id: 'ann_3',
-    title: 'Student Registration Deadline Extended',
-    content: 'The deadline for student registration has been extended to January 30th. Please complete your registration as soon as possible.',
-    authorId: 'user_4',
-    authorName: 'Aminah Binti Ali',
-    authorRole: 'ppmk_biro',
-    targetRoles: ['ppmk_member', 'club_member'],
-    createdAt: '2024-01-13T09:15:00Z',
-    isImportant: true,
-    readBy: []
+    id: '4',
+    email: 'hicom@ppmk.edu.my',
+    name: 'Fatimah Zahra',
+    role: 'club_hicom' as const,
+    clubId: 'club_1',
+    clubName: 'Photography Club'
+  },
+  {
+    id: '5',
+    email: 'biro@ppmk.edu.my',
+    name: 'Hassan Ibrahim',
+    role: 'ppmk_biro' as const,
+    clubId: null,
+    clubName: null
   }
 ];
 
-export const mockProposals: Proposal[] = [
+export const mockProposals = [
   {
     id: 'prop_1',
-    title: 'Annual Robotics Competition 2024',
-    description: 'We propose to organize an annual robotics competition to showcase student talents and promote STEM education.',
-    submittedBy: 'user_3',
-    submitterName: 'Farid Hassan',
+    title: 'Photography Exhibition 2024',
+    description: 'Annual photography exhibition showcasing student works from various genres including landscape, portrait, and street photography. The exhibition will feature 50+ photographs from club members and will be open to the public for one week.',
+    submittedBy: '4',
+    submitterName: 'Fatimah Zahra',
     clubId: 'club_1',
-    clubName: 'Robotics Club',
-    status: 'pending',
-    submittedAt: '2024-01-12T16:20:00Z',
-    budget: 5000,
-    timeline: '3 months',
-    expectedOutcome: 'Increased student engagement in robotics and STEM fields'
+    clubName: 'Photography Club',
+    status: 'pending' as const,
+    submittedAt: '2024-01-15T10:30:00Z',
+    budget: 2500,
+    timeline: '3 months preparation, 1 week exhibition',
+    expectedOutcome: 'Showcase student talent, attract new members, strengthen club reputation'
   },
   {
     id: 'prop_2',
-    title: 'Photography Workshop Series',
-    description: 'A series of photography workshops for students interested in developing their photography skills.',
-    submittedBy: 'user_3',
-    submitterName: 'Farid Hassan',
+    title: 'Inter-University Debate Tournament',
+    description: 'Host a prestigious debate tournament inviting teams from 8 universities across Malaysia. Topics will cover current affairs, technology ethics, and social issues. Prize pool of RM 10,000 for winners.',
+    submittedBy: '3',
+    submitterName: 'Muhammad Ali',
     clubId: 'club_2',
-    clubName: 'Photography Club',
-    status: 'approved',
-    submittedAt: '2024-01-10T11:45:00Z',
-    reviewedAt: '2024-01-11T14:30:00Z',
-    reviewedBy: 'Ibrahim Ismail',
-    feedback: 'Great initiative! Approved with full budget allocation.',
-    budget: 2000,
-    timeline: '2 months',
-    expectedOutcome: 'Enhanced photography skills among students'
+    clubName: 'Debate Society',
+    status: 'approved' as const,
+    submittedAt: '2024-01-10T14:20:00Z',
+    reviewedAt: '2024-01-12T09:15:00Z',
+    reviewedBy: '1',
+    feedback: 'Excellent proposal with clear objectives and realistic budget. Approved for execution.',
+    budget: 15000,
+    timeline: '4 months preparation, 3 days tournament',
+    expectedOutcome: 'Enhance university reputation, develop student skills, networking opportunities'
+  },
+  {
+    id: 'prop_3',
+    title: 'Music Festival - Harmony 2024',
+    description: 'A day-long music festival featuring student bands, solo performances, and guest artists. Multiple genres including traditional Malaysian music, contemporary, and fusion. Food stalls and merchandise booths included.',
+    submittedBy: '4',
+    submitterName: 'Fatimah Zahra',
+    clubId: 'club_3',
+    clubName: 'Music Club',
+    status: 'rejected' as const,
+    submittedAt: '2024-01-08T16:45:00Z',
+    reviewedAt: '2024-01-11T11:30:00Z',
+    reviewedBy: '1',
+    feedback: 'Budget exceeds allocated funds for single events. Please revise and resubmit with reduced scope or seek additional sponsorship.',
+    budget: 25000,
+    timeline: '5 months preparation, 1 day event',
+    expectedOutcome: 'Cultural celebration, community engagement, fundraising for club activities'
+  },
+  {
+    id: 'prop_4',
+    title: 'Tech Innovation Workshop Series',
+    description: 'Monthly workshop series covering emerging technologies: AI/ML, blockchain, IoT, and cybersecurity. Industry experts as speakers, hands-on coding sessions, and project showcases.',
+    submittedBy: '3',
+    submitterName: 'Muhammad Ali',
+    clubId: 'club_4',
+    clubName: 'Tech Innovation',
+    status: 'pending' as const,
+    submittedAt: '2024-01-14T13:15:00Z',
+    budget: 8000,
+    timeline: '6 months series, monthly sessions',
+    expectedOutcome: 'Skill development, industry connections, innovation projects'
+  },
+  {
+    id: 'prop_5',
+    title: 'Community Service - Digital Literacy Program',
+    description: 'Outreach program to teach basic digital skills to elderly residents in nearby communities. Weekly sessions covering smartphone usage, online banking safety, and social media basics.',
+    submittedBy: '4',
+    submitterName: 'Fatimah Zahra',
+    clubId: 'club_4',
+    clubName: 'Tech Innovation',
+    status: 'approved' as const,
+    submittedAt: '2024-01-12T08:00:00Z',
+    reviewedAt: '2024-01-13T15:45:00Z',
+    reviewedBy: '1',
+    feedback: 'Commendable community service initiative. Approved with full support from PPMK.',
+    budget: 1200,
+    timeline: '3 months program, weekly sessions',
+    expectedOutcome: 'Community impact, student volunteer experience, social responsibility'
   }
 ];
 
-export const mockEvents: Event[] = [
+export const mockAnnouncements = [
   {
-    id: 'event_1',
-    title: 'Robotics Workshop: Introduction to Arduino',
-    description: 'Learn the basics of Arduino programming and build your first robot. Perfect for beginners!',
-    date: '2024-02-15',
-    time: '14:00',
-    location: 'Engineering Lab 3',
-    organizerId: 'user_3',
-    organizerName: 'Farid Hassan',
+    id: 'ann_1',
+    title: 'Welcome to New Academic Year 2024',
+    content: 'We are excited to welcome all students to the new academic year. Please check your schedules and prepare for an amazing year ahead filled with learning opportunities and exciting club activities.',
+    authorId: '1',
+    authorName: 'Ahmad Rahman',
+    authorRole: 'ppmk_hicom',
+    targetRoles: ['all'],
+    createdAt: '2024-01-10T09:00:00Z',
+    isImportant: true,
+    readBy: [],
+    type: 'general'
+  },
+  {
+    id: 'ann_2',
+    title: 'Photography Workshop This Weekend',
+    content: 'Join us for an intensive photography workshop covering landscape, portrait, and street photography techniques. Professional photographers will guide you through hands-on sessions. Limited seats available!',
+    authorId: '4',
+    authorName: 'Fatimah Zahra',
+    authorRole: 'club_hicom',
+    targetRoles: ['club_member', 'ppmk_member'],
+    createdAt: '2024-01-12T14:30:00Z',
+    isImportant: false,
+    readBy: [],
     clubId: 'club_1',
-    clubName: 'Robotics Club',
-    maxAttendees: 25,
-    attendees: ['user_2'],
-    isPublic: true,
-    category: 'Workshop',
-    image: 'https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=400',
-    requirements: ['Laptop', 'Basic programming knowledge (optional)'],
-    contactInfo: 'farid@robotics.ppmk.edu.my'
-  },
-  {
-    id: 'event_2',
-    title: 'Photography Contest: Campus Life',
-    description: 'Capture the essence of campus life through your lens. Prizes for top 3 winners!',
-    date: '2024-02-20',
-    time: '09:00',
-    location: 'Main Campus',
-    organizerId: 'user_5',
-    organizerName: 'Ibrahim Ismail',
-    clubId: 'club_2',
     clubName: 'Photography Club',
-    maxAttendees: 50,
-    attendees: [],
-    isPublic: true,
-    category: 'Competition',
-    image: 'https://images.pexels.com/photos/1983032/pexels-photo-1983032.jpeg?auto=compress&cs=tinysrgb&w=400',
-    requirements: ['Camera or smartphone', 'Creative eye'],
-    contactInfo: 'ibrahim@hicom.ppmk.edu.my'
+    type: 'event'
   },
   {
-    id: 'event_3',
-    title: 'PPMK General Assembly',
-    description: 'Annual general assembly for all PPMK members. Important updates and announcements will be shared.',
-    date: '2024-02-25',
-    time: '10:00',
-    location: 'Main Auditorium',
-    organizerId: 'user_5',
-    organizerName: 'Ibrahim Ismail',
-    maxAttendees: 200,
-    attendees: [],
-    isPublic: true,
-    category: 'Meeting',
-    image: 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=400',
-    requirements: ['Student ID'],
-    contactInfo: 'ibrahim@hicom.ppmk.edu.my'
+    id: 'ann_3',
+    title: 'URGENT: System Maintenance Tonight',
+    content: 'The student portal will be undergoing scheduled maintenance tonight from 11 PM to 3 AM. Please save your work and log out before the maintenance window. We apologize for any inconvenience.',
+    authorId: '5',
+    authorName: 'Hassan Ibrahim',
+    authorRole: 'ppmk_biro',
+    targetRoles: ['all'],
+    createdAt: '2024-01-13T16:45:00Z',
+    isImportant: true,
+    readBy: [],
+    type: 'urgent'
+  },
+  {
+    id: 'ann_4',
+    title: 'Club Registration Deadline Extended',
+    content: 'Good news! We have extended the club registration deadline to January 25th. This gives new students more time to explore different clubs and make informed decisions about their extracurricular activities.',
+    authorId: '1',
+    authorName: 'Ahmad Rahman',
+    authorRole: 'ppmk_hicom',
+    targetRoles: ['ppmk_member', 'club_member'],
+    createdAt: '2024-01-14T11:20:00Z',
+    isImportant: false,
+    readBy: [],
+    type: 'general'
+  },
+  {
+    id: 'ann_5',
+    title: 'Inter-Club Debate Competition',
+    content: 'The annual inter-club debate competition is scheduled for February 15th. Topics will cover current affairs, technology, and social issues. Prizes worth RM 5,000 await the winners!',
+    authorId: '1',
+    authorName: 'Ahmad Rahman',
+    authorRole: 'ppmk_hicom',
+    targetRoles: ['club_hicom', 'club_member'],
+    createdAt: '2024-01-15T08:15:00Z',
+    isImportant: false,
+    readBy: [],
+    type: 'event'
+  },
+  {
+    id: 'ann_6',
+    title: 'New Club Formation Guidelines',
+    content: 'Updated guidelines for forming new student clubs are now available. The process has been streamlined and new digital forms are available on the portal. Minimum 15 founding members required.',
+    authorId: '5',
+    authorName: 'Hassan Ibrahim',
+    authorRole: 'ppmk_biro',
+    targetRoles: ['ppmk_member'],
+    createdAt: '2024-01-16T13:00:00Z',
+    isImportant: false,
+    readBy: [],
+    type: 'general'
   }
 ];
 
-export const mockClubs: Club[] = [
+export const mockClubs = [
   {
     id: 'club_1',
-    name: 'Robotics Club',
-    description: 'Explore the fascinating world of robotics, AI, and automation. Build robots, participate in competitions, and develop cutting-edge technology solutions.',
-    category: 'Technology',
-    memberCount: 45,
-    image: 'https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=400',
-    hicomMembers: ['user_3'],
-    establishedYear: 2020,
-    activities: ['Robot Building', 'Programming Workshops', 'Competitions', 'Tech Talks'],
-    meetingSchedule: 'Every Friday, 2:00 PM - 4:00 PM',
-    contactEmail: 'robotics@ppmk.edu.my',
-    socialLinks: {
-      instagram: '@ppmk_robotics',
-      facebook: 'PPMK Robotics Club'
-    }
+    name: 'Photography Club',
+    description: 'Capture moments, create memories',
+    members: 45,
+    events: 8,
+    category: 'Arts & Culture'
   },
   {
     id: 'club_2',
-    name: 'Photography Club',
-    description: 'Capture moments, tell stories, and express creativity through the art of photography. From portraits to landscapes, learn all aspects of photography.',
-    category: 'Arts',
-    memberCount: 32,
-    image: 'https://images.pexels.com/photos/1983032/pexels-photo-1983032.jpeg?auto=compress&cs=tinysrgb&w=400',
-    hicomMembers: [],
-    establishedYear: 2019,
-    activities: ['Photo Walks', 'Editing Workshops', 'Exhibitions', 'Contests'],
-    meetingSchedule: 'Every Wednesday, 3:00 PM - 5:00 PM',
-    contactEmail: 'photography@ppmk.edu.my',
-    socialLinks: {
-      instagram: '@ppmk_photography',
-      website: 'https://ppmkphoto.com'
-    }
+    name: 'Debate Society',
+    description: 'Where words meet wisdom',
+    members: 32,
+    events: 12,
+    category: 'Academic'
   },
   {
     id: 'club_3',
-    name: 'Debate Society',
-    description: 'Sharpen your critical thinking and public speaking skills. Engage in intellectual discussions and represent PPMK in inter-university debates.',
-    category: 'Academic',
-    memberCount: 28,
-    image: 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=400',
-    hicomMembers: [],
-    establishedYear: 2018,
-    activities: ['Weekly Debates', 'Public Speaking Training', 'Competitions', 'Workshops'],
-    meetingSchedule: 'Every Tuesday, 4:00 PM - 6:00 PM',
-    contactEmail: 'debate@ppmk.edu.my',
-    socialLinks: {
-      facebook: 'PPMK Debate Society'
-    }
+    name: 'Music Club',
+    description: 'Harmony in diversity',
+    members: 28,
+    events: 6,
+    category: 'Arts & Culture'
   },
   {
     id: 'club_4',
-    name: 'Environmental Club',
-    description: 'Promote environmental awareness and sustainability on campus. Organize green initiatives and educate the community about environmental issues.',
-    category: 'Environment',
-    memberCount: 38,
-    image: 'https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=400',
-    hicomMembers: [],
-    establishedYear: 2021,
-    activities: ['Tree Planting', 'Recycling Drives', 'Awareness Campaigns', 'Clean-up Events'],
-    meetingSchedule: 'Every Saturday, 9:00 AM - 11:00 AM',
-    contactEmail: 'environment@ppmk.edu.my',
-    socialLinks: {
-      instagram: '@ppmk_green',
-      facebook: 'PPMK Environmental Club'
-    }
-  },
-  {
-    id: 'club_5',
-    name: 'Music Society',
-    description: 'Express yourself through music! Whether you play instruments, sing, or compose, join us to create beautiful music together.',
-    category: 'Arts',
-    memberCount: 41,
-    image: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=400',
-    hicomMembers: [],
-    establishedYear: 2017,
-    activities: ['Band Practice', 'Concerts', 'Music Theory Classes', 'Recording Sessions'],
-    meetingSchedule: 'Every Thursday, 5:00 PM - 7:00 PM',
-    contactEmail: 'music@ppmk.edu.my',
-    socialLinks: {
-      instagram: '@ppmk_music',
-      youtube: 'PPMK Music Society'
-    }
+    name: 'Tech Innovation',
+    description: 'Building the future today',
+    members: 67,
+    events: 15,
+    category: 'Technology'
   }
 ];
