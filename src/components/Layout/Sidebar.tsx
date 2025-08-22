@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { useNavigation, NavigationTab } from '../../contexts/NavigationContext';
 import { 
   Home, 
   Users, 
@@ -21,57 +22,58 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const { user, logout } = useAuth();
+  const { activeTab, setActiveTab } = useNavigation();
 
   const getNavigationItems = () => {
     const baseItems = [
-      { icon: Home, label: 'Overview', id: 'overview' },
-      { icon: Bell, label: 'Notifications', id: 'notifications' }
+      { icon: Home, label: 'Overview', id: 'overview' as NavigationTab },
+      { icon: Bell, label: 'Notifications', id: 'notifications' as NavigationTab }
     ];
 
     switch (user?.role) {
       case 'ppmk_member':
         return [
           ...baseItems,
-          { icon: Megaphone, label: 'Announcements', id: 'announcements' },
-          { icon: Users, label: 'Clubs', id: 'clubs' },
-          { icon: Calendar, label: 'Events', id: 'events' },
-          { icon: FileText, label: 'My Applications', id: 'applications' }
+          { icon: Megaphone, label: 'Announcements', id: 'announcements' as NavigationTab },
+          { icon: Users, label: 'Clubs', id: 'clubs' as NavigationTab },
+          { icon: Calendar, label: 'Events', id: 'events' as NavigationTab },
+          { icon: FileText, label: 'My Applications', id: 'applications' as NavigationTab }
         ];
       
       case 'club_member':
         return [
           ...baseItems,
-          { icon: Megaphone, label: 'Announcements', id: 'announcements' },
-          { icon: Building2, label: 'My Clubs', id: 'clubs' },
-          { icon: Calendar, label: 'Events', id: 'events' }
+          { icon: Megaphone, label: 'Announcements', id: 'announcements' as NavigationTab },
+          { icon: Building2, label: 'My Clubs', id: 'clubs' as NavigationTab },
+          { icon: Calendar, label: 'Events', id: 'events' as NavigationTab }
         ];
       
       case 'club_hicom':
         return [
           ...baseItems,
-          { icon: Megaphone, label: 'Announcements', id: 'announcements' },
-          { icon: UserCheck, label: 'Applications', id: 'applications' },
-          { icon: FileText, label: 'Proposals', id: 'proposals' },
-          { icon: Calendar, label: 'Events', id: 'events' }
+          { icon: Megaphone, label: 'Announcements', id: 'announcements' as NavigationTab },
+          { icon: UserCheck, label: 'Applications', id: 'applications' as NavigationTab },
+          { icon: FileText, label: 'Proposals', id: 'proposals' as NavigationTab },
+          { icon: Calendar, label: 'Events', id: 'events' as NavigationTab }
         ];
       
       case 'ppmk_biro':
         return [
           ...baseItems,
-          { icon: Megaphone, label: 'Announcements', id: 'announcements' },
-          { icon: Users, label: 'Clubs', id: 'clubs' },
-          { icon: Calendar, label: 'Events', id: 'events' },
-          { icon: FileText, label: 'Proposals', id: 'proposals' }
+          { icon: Megaphone, label: 'Announcements', id: 'announcements' as NavigationTab },
+          { icon: Users, label: 'Clubs', id: 'clubs' as NavigationTab },
+          { icon: Calendar, label: 'Events', id: 'events' as NavigationTab },
+          { icon: FileText, label: 'Proposals', id: 'proposals' as NavigationTab }
         ];
       
       case 'ppmk_hicom':
         return [
           ...baseItems,
-          { icon: Megaphone, label: 'Announcements', id: 'announcements' },
-          { icon: Users, label: 'Clubs', id: 'clubs' },
-          { icon: Calendar, label: 'Events', id: 'events' },
-          { icon: FileText, label: 'Proposals', id: 'proposals' },
-          { icon: UserCheck, label: 'Applications', id: 'applications' }
+          { icon: Megaphone, label: 'Announcements', id: 'announcements' as NavigationTab },
+          { icon: Users, label: 'Clubs', id: 'clubs' as NavigationTab },
+          { icon: Calendar, label: 'Events', id: 'events' as NavigationTab },
+          { icon: FileText, label: 'Proposals', id: 'proposals' as NavigationTab },
+          { icon: UserCheck, label: 'Applications', id: 'applications' as NavigationTab }
         ];
       
       default:
@@ -80,6 +82,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   };
 
   const navigationItems = getNavigationItems();
+
+  const handleNavigation = (tabId: NavigationTab) => {
+    setActiveTab(tabId);
+    onClose(); // Close sidebar on mobile after navigation
+  };
 
   return (
     <>
@@ -114,7 +121,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             {navigationItems.map((item) => (
               <button
                 key={item.id}
-                className="w-full flex items-center space-x-3 px-3 py-2 text-left text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                onClick={() => handleNavigation(item.id)}
+                className={`w-full flex items-center space-x-3 px-3 py-2 text-left rounded-lg transition-colors ${
+                  activeTab === item.id
+                    ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700'
+                    : 'text-gray-700 hover:bg-gray-100'
+                }`}
               >
                 <item.icon className="h-5 w-5" />
                 <span>{item.label}</span>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { useNavigation } from '../../contexts/NavigationContext';
 import Layout from '../Layout/Layout';
 import PPMKMemberDashboard from './PPMKMemberDashboard';
 import ClubMemberDashboard from './ClubMemberDashboard';
@@ -9,6 +10,7 @@ import PPMKHiComDashboard from './PPMKHiComDashboard';
 
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
+  const { activeTab } = useNavigation();
 
   if (!user) {
     return (
@@ -24,15 +26,15 @@ const Dashboard: React.FC = () => {
   const renderDashboard = () => {
     switch (user.role) {
       case 'ppmk_member':
-        return <PPMKMemberDashboard />;
+        return <PPMKMemberDashboard activeTab={activeTab} />;
       case 'club_member':
-        return <ClubMemberDashboard />;
+        return <ClubMemberDashboard activeTab={activeTab} />;
       case 'club_hicom':
-        return <ClubHiComDashboard activeTab="overview" />;
+        return <ClubHiComDashboard activeTab={activeTab} />;
       case 'ppmk_biro':
-        return <PPMKBiroDashboard />;
+        return <PPMKBiroDashboard activeTab={activeTab} />;
       case 'ppmk_hicom':
-        return <PPMKHiComDashboard />;
+        return <PPMKHiComDashboard activeTab={activeTab} />;
       default:
         return (
           <div className="min-h-screen flex items-center justify-center">

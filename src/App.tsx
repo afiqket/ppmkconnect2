@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+import { NavigationProvider } from './contexts/NavigationContext';
 import { NotificationProvider } from './contexts/NotificationContext';
 import { AnnouncementProvider } from './contexts/AnnouncementContext';
 import { ProposalProvider } from './contexts/ProposalContext';
@@ -13,19 +14,21 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <NotificationProvider>
-          <ClubProvider>
-            <AnnouncementProvider>
-              <ProposalProvider>
-                <EventProvider>
-                  <ApplicationProvider>
-                    <AppRoutes />
-                  </ApplicationProvider>
-                </EventProvider>
-              </ProposalProvider>
-            </AnnouncementProvider>
-          </ClubProvider>
-        </NotificationProvider>
+        <NavigationProvider>
+          <NotificationProvider>
+            <ClubProvider>
+              <AnnouncementProvider>
+                <ProposalProvider>
+                  <EventProvider>
+                    <ApplicationProvider>
+                      <AppRoutes />
+                    </ApplicationProvider>
+                  </EventProvider>
+                </ProposalProvider>
+              </AnnouncementProvider>
+            </ClubProvider>
+          </NotificationProvider>
+        </NavigationProvider>
       </AuthProvider>
     </BrowserRouter>
   );
